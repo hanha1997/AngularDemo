@@ -1,12 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  DoCheck, OnDestroy,
+  OnInit, QueryList, SkipSelf,
+  ViewChild, ViewChildren
+} from '@angular/core';
 import {Room, RoomList} from "./rooms";
+import {HeaderComponent} from "../header/header.component";
+import {RoomService} from "./services/room.service";
 
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss']
 })
-export class RoomsComponent implements OnInit{
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
   hotelName= 'Angular Hotel';
   numberOfRom = 10;
   hideRoom = false;
@@ -16,44 +25,47 @@ export class RoomsComponent implements OnInit{
     availableRooms: 10,
     bookedRooms: 5,
   };
+  selectedRoom: RoomList | undefined; //selectedRoom!
 
-  roomList: RoomList[] = [
-    {
-      roomNumber:1,
-      roomType: 'Duluxe',
-      amenities:'Air Conditioner',
-      price: 500,
+  roomList: RoomList[] = []
+  toggle() {
+    this.hideRoom = !this.hideRoom
+    this.title = 'Rooms Lists'
+  }
+
+  constructor(@SkipSelf() private roomService: RoomService) {
+  }
+  ngOnInit() {
+    this.roomList = this.roomService.getRooms();
+  }
+  title = 'Room List';
+  @ViewChild(HeaderComponent) headerComponent! : HeaderComponent
+  @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>
+  ngAfterViewInit() {
+    this.headerComponent.title = 'Rooms View';
+    this.headerChildrenComponent.last.title = 'Last Title';
+  }
+  ngAfterViewChecked() {
+  }
+  ngDoCheck() {
+    console.log('on change call')
+  }
+
+  selectRoom(room: RoomList) {
+    this.selectedRoom = room;
+  }
+  addRoom() {
+    const room: RoomList= {
+      roomNumber:4,
+      roomType: 'Duluxe2',
+      amenities:'Air Conditioner, 123',
+      price: 900,
       photos: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9jyeynlFwVGBRreQHauSuqrkhoKGk7ytIw8OpgZbNA&s',
       checkinTime: new  Date('11-nov-2021'),
       checkoutTime: new  Date('12-nov-2021'),
-      rating:2.502
-    },
-    {
-      roomNumber:2,
-      roomType: 'Private Room',
-      amenities:'Air Conditioner',
-      price: 5000,
-      photos: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9jyeynlFwVGBRreQHauSuqrkhoKGk7ytIw8OpgZbNA&s',
-      checkinTime: new  Date('13-nov-2021'),
-      checkoutTime: new  Date('14-nov-2021'),
-      rating:4.6
-
-    },
-    {
-      roomNumber:3,
-      roomType: 'Vips Room',
-      amenities:'Air Conditioner',
-      price: 10000,
-      photos: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9jyeynlFwVGBRreQHauSuqrkhoKGk7ytIw8OpgZbNA&s',
-      checkinTime: new  Date('14-nov-2021'),
-      checkoutTime: new  Date('15-nov-2021'),
-      rating:2.6
-
-    },
-  ]
-  toggle() {
-    this.hideRoom = !this.hideRoom
-  }
-  ngOnInit() {
+      rating:5.02
+    }
+    // this.roomList.push(room)
+    this.roomList = [...this.roomList, room]
   }
 }
