@@ -2,14 +2,18 @@ import {
   AfterViewChecked,
   AfterViewInit,
   Component,
-  DoCheck, OnDestroy,
-  OnInit, QueryList, SkipSelf,
-  ViewChild, ViewChildren
+  DoCheck,
+  OnInit,
+  QueryList,
+  SkipSelf,
+  ViewChild,
+  ViewChildren
 } from '@angular/core';
 import {Room, RoomList} from "./rooms";
 import {HeaderComponent} from "../header/header.component";
 import {RoomService} from "./services/room.service";
 import {Observable} from "rxjs";
+import {HttpEventType} from "@angular/common/http";
 
 @Component({
   selector: 'app-rooms',
@@ -19,7 +23,7 @@ import {Observable} from "rxjs";
 export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
   hotelName= 'Angular Hotel';
   numberOfRom = 10;
-  hideRoom = false;
+  hideRoom = true;
 
   rooms: Room = {
     totalRooms: 20,
@@ -33,18 +37,45 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     this.hideRoom = !this.hideRoom
     this.title = 'Rooms Lists'
   }
+
+  totalBytes = 0;
+  constructor(@SkipSelf() private roomService: RoomService) {
+  }
   stream = new Observable<string>(observer => {
     observer.next('user1');
     observer.next('user2');
     observer.next('user3');
     observer.complete();
   })
-  constructor(@SkipSelf() private roomService: RoomService) {
-  }
   ngOnInit() {
+    this.roomService.getPhotos().subscribe((event) => {
+      switch (event.type) {
+        case HttpEventType.Sent: {
+          console.log('request has been made');
+          break;
+        } case HttpEventType.ResponseHeader: {
+          console.log('request success');
+          break;
+        }
+        case HttpEventType.DownloadProgress: {
+          this.totalBytes += event.loaded;
+          break;
+        }
+        case HttpEventType.Response: {
+          console.log(event.body);
+        }
+      }
+    })
+    this.stream.subscribe({
+      next: (value => console.log(value)),
+      complete:() => console.log('complete'),
+      error:(err) => console.log(err),
+    })
+    this.stream.subscribe((data) => console.log(data));
     this.roomService.getRooms().subscribe(rooms => {
       this.roomList = rooms;
     })
+
   }
   title = 'Room List';
   @ViewChild(HeaderComponent) headerComponent! : HeaderComponent
@@ -95,4 +126,12 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
       this.roomList = data;
     })
   }
+
+  deleteRoom() {
+    this.roomService.deletedRooms('3').subscribe((data) => {
+      this.roomList = data;
+    })
+  }
+
+
 }
