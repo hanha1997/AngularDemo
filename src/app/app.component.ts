@@ -1,7 +1,7 @@
 import {Component, ElementRef, Inject, OnInit, Optional, ViewChild} from '@angular/core';
 import {RoomsComponent} from "./rooms/rooms.component";
 import {LoggerService} from "./logger.service";
-import { localstorageToken } from './localstorage.token';
+import { localStorageToken } from "./localstorage.token";
 
 @Component({
   selector: 'app-root',
@@ -14,8 +14,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.name.nativeElement.innerText = "Hilton Hotel";
+    this.localStorage.setItem('name', 'Hilton Hotel');
   }
-  constructor(@Optional() private loggerService: LoggerService, @Inject(localstorageToken) private localStorage: Storage) {
+  constructor(@Optional() private loggerService: LoggerService, @Inject(localStorageToken) private localStorage: any) {
   }
   // @ViewChild('user', {read: ViewContainerRef}) vcr!: ViewContainerRef;
   // constructor() {
