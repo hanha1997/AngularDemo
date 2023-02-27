@@ -1,0 +1,25 @@
+<form>
+  <div class="form-group">
+    <input
+      appHover="green"
+       type="text"
+       class="form-control"
+       name="name"
+       [(ngModel)]="email"
+       placeholder="Provide your username"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      appHover="steelblue"
+      type="password"
+      class="form-control"
+      name="name"
+      [(ngModel)]="password"
+      placeholder="Enter your password"
+    />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" (click)="login()" type="submit"> Submit</button>
+  </div>
+</form>

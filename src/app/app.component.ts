@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   @ViewChild('name', {static : true}) name!:  ElementRef
 
   ngOnInit() {
-    this.name.nativeElement.innerText = "Hilton Hotel";
+    // this.name.nativeElement.innerText = "Hilton Hotel";
     this.localStorage.setItem('name', 'Hilton Hotel');
   }
   constructor(
