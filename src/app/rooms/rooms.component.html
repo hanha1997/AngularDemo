@@ -8,8 +8,10 @@
 
   </div>
 </div>
+<router-outlet></router-outlet>
+
 <div>
-  <button class="btn btn-primary" (click)="addRoom()"> Add Room</button>
+  <button class="btn btn-primary"  routerLink="add"> Add Room</button>
 </div>
   <h1>Error
     {{getError$ | async }}

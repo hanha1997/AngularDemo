@@ -14,6 +14,7 @@ import {HeaderComponent} from "../header/header.component";
 import {RoomService} from "./services/room.service";
 import {catchError, map, Observable, of, Subject, Subscription} from "rxjs";
 import {HttpEventType} from "@angular/common/http";
+import {ConfigService} from "../services/config.service";
 
 @Component({
   selector: 'app-rooms',
@@ -42,7 +43,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   }
 
   totalBytes = 0;
-  constructor(@SkipSelf() private roomService: RoomService) {
+  constructor(@SkipSelf() private roomService: RoomService, private configService: ConfigService) {
   }
 
   roomsCount$ = this.roomService.getRooms$.pipe(
