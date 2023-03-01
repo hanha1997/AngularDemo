@@ -1,7 +1,5 @@
-<p>booking works!</p>
-{{bookingForm.value | json}}
-{{bookingForm.pristine | json}}
-{{bookingForm.dirty | json}}
+{{bookingForm.valid | json}}
+{{bookingForm.invalid | json}}
 
 <div>
   <button mat-raised-button color="primary" (click)="addPassport()">Add Passport</button>
@@ -33,6 +31,7 @@
              matInput
              formControlName="guestName"
              placeholder="Guard Name">
+      {{bookingForm.get('guestName')?.errors | json }}
       <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')">
         Guest Name min length 5
       </mat-error>
@@ -114,6 +113,8 @@
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+      {{bookingForm.get('checkoutDate')?.errors | json }}
+
     </div>
     <div>
         <mat-form-field class="example-full-width">

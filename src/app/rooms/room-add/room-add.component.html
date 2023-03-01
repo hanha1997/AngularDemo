@@ -1,8 +1,8 @@
-{{roomsForm.pristine  | json}}
-{{roomsForm.dirty | json}}
-{{roomsForm.valid | json}}
-{{roomsForm.invalid | json}}
-{{roomsForm.value | json}}
+<!--{{roomsForm.pristine  | json}}-->
+<!--{{roomsForm.dirty | json}}-->
+<!--{{roomsForm.valid | json}}-->
+<!--{{roomsForm.invalid | json}}-->
+<!--{{roomsForm.value | json}}-->
 
 <div *ngIf="successMessage !==''" class="alert alert-success">
   {{successMessage}}
@@ -22,6 +22,7 @@
       name="amenities"
       placeholder="Amenities"
       [(ngModel)]="room.amenities"
+      [ngModelOptions]="{updateOn: 'blur'}"
     />
     <div class="alert alert-danger"  *ngIf="roomamenities.errors?.['minlength']">
       Amentites should be 5 chars
