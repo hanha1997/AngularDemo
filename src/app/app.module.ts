@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, ErrorHandler, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +24,8 @@ import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directi
 // import {RoomsModule} from "./rooms/rooms.module";
 import {HeaderModule} from "./header/header.module";
 import {RouteConfigToken} from "./services/routeConfig.service";
-import {ROUTES} from "@angular/router";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {GlobalErrorHandler} from "./errorHandler.service";
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -53,7 +54,8 @@ function initFactory(initService: InitService) {
     MatIconModule,
     MatListModule,
     FormsModule,
-    HeaderModule
+    HeaderModule,
+    MatSnackBarModule
   ],
   providers: [
     {
@@ -74,6 +76,10 @@ function initFactory(initService: InitService) {
       useFactory: initFactory,
       deps: [InitService],
       multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
     }
   ],
   bootstrap: [AppComponent]

@@ -15,6 +15,7 @@ import {RoomService} from "./services/room.service";
 import {catchError, map, Observable, of, Subject, Subscription} from "rxjs";
 import {HttpEventType} from "@angular/common/http";
 import {ConfigService} from "../services/config.service";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: 'app-rooms',
@@ -57,6 +58,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
       return of([]);
     })
   );
+  priceFilter = new FormControl( 0) ?? 0;
   stream = new Observable<string>(observer => {
     observer.next('user1');
     observer.next('user2');

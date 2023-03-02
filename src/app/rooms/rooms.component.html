@@ -19,8 +19,12 @@
 <!--<h1>Number Of Rooms:-->
 <!--  {{roomsCount$ | async }}-->
 <!--</h1>-->
+{{priceFilter | json }}
+<div>
+  <input type="number" class="form-control" placeholder="Price" [formControl]="priceFilter">
+</div>
 <div *ngIf="rooms$ | async as rooms">
-  <app-room-list [rooms]="rooms" [title]="title" (selectedRoom)="selectRoom($event)"></app-room-list>
+  <app-room-list [rooms]="rooms"  [price]="priceFilter?.value ?? 0"  [title]="title" (selectedRoom)="selectRoom($event)"></app-room-list>
 </div>
 
 <!--<button class="" (click)="toggle()">Toggle</button>-->

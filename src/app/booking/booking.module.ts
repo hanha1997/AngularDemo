@@ -13,6 +13,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {HttpClientModule} from "@angular/common/http";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 
@@ -32,7 +33,8 @@ import {HttpClientModule} from "@angular/common/http";
     MatExpansionModule,
     MatIconModule,
     MatCheckboxModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
   ]
 })
 export class BookingModule { }
