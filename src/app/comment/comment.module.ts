@@ -8,6 +8,9 @@ import {FormsModule} from "@angular/forms";
 import {MultiSelectModule} from "primeng/multiselect";
 import {CheckboxModule} from "primeng/checkbox";
 import {CalendarModule} from "primeng/calendar";
+import {AutoCompleteModule} from "primeng/autocomplete";
+import {InputTextModule} from "primeng/inputtext";
+import {EditorModule} from "primeng/editor";
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import {CalendarModule} from "primeng/calendar";
     FormsModule,
     MultiSelectModule,
     CheckboxModule,
-    CalendarModule
+    CalendarModule,
+    AutoCompleteModule,
+    InputTextModule,
+    EditorModule
   ]
 })
 export class CommentModule { }

@@ -21,6 +21,7 @@ export class CommentComponent implements OnInit{
   isChecked:boolean = true;
   minDate= new Date('02/06/2023');
   maxDate= new Date('04/08/2023');
+  firstName:string = '';
   value = [this.minDate, this.maxDate];
   termsAndCondition(event: any) {
     console.log(event);
@@ -33,4 +34,27 @@ export class CommentComponent implements OnInit{
       this.comments = data['comments']
     });
   }
+  text: string = '';
+  results:Comments [] = [];
+
+  search(event: any) {
+    console.log(event.query);
+    if (event.query) {
+      this.commentService.getQueryComments(event.query).subscribe(
+        data => this.results = data
+      );
+    } else {
+      this.ngOnInit();
+    }
+  }
+  selectId(event :any) {
+    if (event) {
+      this.commentService.getQueryComments(event.email).subscribe(
+        data =>this.comments = data
+      );
+    } else {
+      this.ngOnInit();
+    }
+  }
+
 }

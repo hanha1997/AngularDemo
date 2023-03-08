@@ -28,6 +28,12 @@
 
 <p-calendar [(ngModel)]="value" dateFormat="dd/mm/yy" selectionMode="range" (onSelect)="select($event)"></p-calendar>
 
+<br/>
+<p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)" [multiple]="true" [dropdown]="true" field="email" (onSelect)="selectId($event)" [minLength]="5"></p-autoComplete>
+<br>
+<input type="text" pInputText  [(ngModel)]="firstName" #fname="ngModel" required/>
+<p-editor [style]="{'height':'320px'}"></p-editor>
+
 <h1>Comment</h1>
 <p-table [value]="comments" [paginator]="true" [rows]="10"
          [showCurrentPageReport]="true" [tableStyle]="{'min-width': '50rem'}"

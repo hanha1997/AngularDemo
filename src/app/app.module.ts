@@ -31,6 +31,9 @@ import {DropdownModule} from "primeng/dropdown";
 import {MultiSelectModule} from "primeng/multiselect";
 import {CheckboxModule} from "primeng/checkbox";
 import {CalendarModule} from "primeng/calendar";
+import {AutoCompleteModule} from "primeng/autocomplete";
+import {InputTextModule} from "primeng/inputtext";
+import {EditorModule} from "primeng/editor";
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -66,7 +69,10 @@ function initFactory(initService: InitService) {
     DropdownModule,
     MultiSelectModule,
     CheckboxModule,
-    CalendarModule
+    CalendarModule,
+    AutoCompleteModule,
+    InputTextModule,
+    EditorModule
   ],
   providers: [
     {
