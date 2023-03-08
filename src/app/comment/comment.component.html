@@ -1,22 +1,62 @@
-<table class="table">
-  <tr>
-    <th>
-ID
-    </th>
-    <th>
-PostID
-    </th>
-    <th>
-Name
-    </th>
-    <th>
-Email
-    </th>
-  </tr>
-  <tr *ngFor="let comment of comment$| async">
-    <td>{{comment.id}}</td>
-    <td>{{comment.postId}}</td>
-    <td>{{comment.name}}</td>
-    <td>{{comment.email}}</td>
-  </tr>
-</table>
+<!--<table class="table">-->
+<!--  <tr>-->
+<!--    <th>-->
+<!--ID-->
+<!--    </th>-->
+<!--    <th>-->
+<!--PostID-->
+<!--    </th>-->
+<!--    <th>-->
+<!--Name-->
+<!--    </th>-->
+<!--    <th>-->
+<!--Email-->
+<!--    </th>-->
+<!--  </tr>-->
+<!--  <tr *ngFor="let comment of comment$| async">-->
+<!--    <td>{{comment.id}}</td>-->
+<!--    <td>{{comment.postId}}</td>-->
+<!--    <td>{{comment.name}}</td>-->
+<!--    <td>{{comment.email}}</td>-->
+<!--  </tr>-->
+<!--</table>-->
+<p-multiSelect [options]="comments" [(ngModel)]="multipleSelectedComment" display="chip" optionLabel="name" optionValue="email" [filter]="true" placeholder="Select Multiple Comment"></p-multiSelect>
+{{multipleSelectedComment|json}}
+
+<p-dropdown [options]="comments" [(ngModel)]="selectedComment"  optionLabel="name" optionValue="email" [filter]="true"  placeholder="Select Comment"></p-dropdown>
+{{selectedComment|json}}
+
+<p-calendar [(ngModel)]="value" dateFormat="dd/mm/yy" selectionMode="range" (onSelect)="select($event)"></p-calendar>
+
+<h1>Comment</h1>
+<p-table [value]="comments" [paginator]="true" [rows]="10"
+         [showCurrentPageReport]="true" [tableStyle]="{'min-width': '50rem'}"
+         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,20,100]"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        PostID
+      </th>
+      <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th>
+        Email
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-comment>
+    <tr>
+      <td>{{comment.id}}</td>
+      <td>{{comment.postId}}</td>
+      <td>{{comment.name}}</td>
+      <td>{{comment.email}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-checkbox name="check" label="I have read the terms" [binary]="true" value="accepted" [(ngModel)]="isChecked" (onChange)="termsAndCondition($event)"></p-checkbox>
+
+{{isChecked}}

@@ -26,6 +26,11 @@ import {HeaderModule} from "./header/header.module";
 import {RouteConfigToken} from "./services/routeConfig.service";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {GlobalErrorHandler} from "./errorHandler.service";
+import {TableModule} from "primeng/table";
+import {DropdownModule} from "primeng/dropdown";
+import {MultiSelectModule} from "primeng/multiselect";
+import {CheckboxModule} from "primeng/checkbox";
+import {CalendarModule} from "primeng/calendar";
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -55,7 +60,13 @@ function initFactory(initService: InitService) {
     MatListModule,
     FormsModule,
     HeaderModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    TableModule,
+    BrowserAnimationsModule,
+    DropdownModule,
+    MultiSelectModule,
+    CheckboxModule,
+    CalendarModule
   ],
   providers: [
     {
