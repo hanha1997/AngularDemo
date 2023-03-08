@@ -17,7 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NotfoundComponent } from './notfound/notfound.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './hover.directive';
 import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directive';
@@ -34,6 +34,9 @@ import {CalendarModule} from "primeng/calendar";
 import {AutoCompleteModule} from "primeng/autocomplete";
 import {InputTextModule} from "primeng/inputtext";
 import {EditorModule} from "primeng/editor";
+import { RegisterComponent } from './register/register.component';
+import {ButtonModule} from "primeng/button";
+import {CardModule} from "primeng/card";
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -47,7 +50,8 @@ function initFactory(initService: InitService) {
     NotfoundComponent,
     LoginComponent,
     HoverDirective,
-    EmailvalidatorDirective
+    EmailvalidatorDirective,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,10 @@ function initFactory(initService: InitService) {
     CalendarModule,
     AutoCompleteModule,
     InputTextModule,
-    EditorModule
+    EditorModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    CardModule
   ],
   providers: [
     {

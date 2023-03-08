@@ -1,0 +1,55 @@
+<p-card class="flex justify-content-center align-content-center">
+  <form [formGroup]="userForm" (ngSubmit)="addUser()">
+    <div class="p-filled">
+      <label for="firstName" class="blockquote">First Name</label>
+      <div>
+        <input
+          type="text"
+          pInputText
+          placeholder="FirstName"
+          formControlName="firstName"
+        />
+      </div>
+    </div>
+    <div class="p-filled">
+      <label for="lastName" class="blockquote">Last Name</label>
+      <div>
+        <input
+          type="text"
+          pInputText
+          placeholder="LastName"
+          formControlName="lastName"
+        />
+      </div>
+
+    </div>
+    <div formGroupName="address">
+      <h2>Address</h2>
+      <div class="p-filled">
+        <label for="street" class="blockquote">Street</label>
+        <div>
+          <input
+            type="text"
+            pInputText
+            placeholder="Street"
+            formControlName="street"
+          />
+        </div>
+      </div>
+      <div class="p-filled">
+        <label for="postCode" class="blockquote">Post Code</label>
+        <div>
+          <input
+            type="text"
+            pInputText
+            placeholder="PostCode"
+            formControlName="postCode"
+          />
+        </div>
+      </div>
+    </div>
+
+    <button pButton type="submit" label="Submit" [disabled]="userForm.invalid"></button>
+  </form>
+</p-card>
+
