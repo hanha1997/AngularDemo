@@ -41,6 +41,9 @@ import {MessageModule} from "primeng/message";
 import {MessagesModule} from "primeng/messages";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
+import { FormComponent } from './form/form.component';
+import {InputTextareaModule} from "primeng/inputtextarea";
+import {InputNumberModule} from "primeng/inputnumber";
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -56,6 +59,7 @@ function initFactory(initService: InitService) {
     HoverDirective,
     EmailvalidatorDirective,
     RegisterComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +91,8 @@ function initFactory(initService: InitService) {
     MessageModule,
     MessagesModule,
     ToastModule,
+    InputTextareaModule,
+    InputNumberModule,
   ],
   providers: [
     {

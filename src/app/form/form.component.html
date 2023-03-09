@@ -1,0 +1,50 @@
+
+<p-card styleClass="dynamic-form-card" class="flex justify-content-center">
+  <div class="text-center">Dynamic Form Creation</div>
+  <form [formGroup]="dynamicForm" (ngSubmit)="saveForm()" novalidate>
+    <div class="field" *ngFor="let field of formFields" [ngSwitch]="field.type">
+      <label class="block">{{ field.label }}</label>
+
+      <textarea
+        pInputTextarea
+        *ngSwitchCase="'textArea'"
+        formControlName="{{ field.name }}"
+      ></textarea>
+
+      <input
+        type="text"
+        *ngSwitchCase="'text'"
+        pInputText
+        formControlName="{{ field.name }}"
+      />
+
+      <p-inputNumber
+        formControlName="{{ field.name }}"
+        *ngSwitchCase="'number'"
+      ></p-inputNumber>
+
+      <p-dropdown
+        *ngSwitchCase="'dropdown'"
+        [options]="field.options"
+        formControlName="{{ field.name }}"
+        placeholder="select"
+      ></p-dropdown>
+
+      <small
+        class="block p-error"
+        *ngIf="
+          dynamicForm?.get(field.name)?.invalid &&
+          dynamicForm?.get(field.name)?.dirty
+        "
+      >
+        This field is required
+      </small>
+    </div>
+
+    <p-button
+      label="Submit"
+      type="submit"
+      [disabled]="dynamicForm.invalid"
+    ></p-button>
+  </form>
+</p-card>

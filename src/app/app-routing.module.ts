@@ -5,6 +5,7 @@ import {NotfoundComponent} from "./notfound/notfound.component";
 import {LoginComponent} from "./login/login.component";
 import {LoginGuard} from "./guards/login.guard";
 import {RegisterComponent} from "./register/register.component";
+import {FormComponent} from "./form/form.component";
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   },
   { path: 'comments', loadChildren: () => import('./comment/comment.module').then(m => m.CommentModule) },
   { path: 'register', component: RegisterComponent},
+  { path: 'form', component: FormComponent},
   {
     path: '**', component: NotfoundComponent
   }
