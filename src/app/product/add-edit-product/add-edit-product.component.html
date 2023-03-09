@@ -1,0 +1,41 @@
+<p-dialog
+  header="Header" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '50vw'}"
+          [draggable]="false" [resizable]="false" (onHide)="closeModal()"
+>
+  <form [formGroup]="productForm" class="product-form">
+    <div class="field">
+      <label class="block">Title</label>
+      <input type="text" pInputText id="title" formControlName="title"/>
+      <small class="p-error block" *ngIf="productForm.controls['title'].invalid && productForm.controls['title'].dirty">Field is required</small>
+    </div>
+    <div class="field">
+      <label class="block">Price</label>
+      <p-inputNumber id="price" formControlName="price"></p-inputNumber>
+      <small class="p-error block" *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].dirty">Field is required</small>
+
+    </div>
+    <div class="field">
+      <label class="block">Description</label>
+      <input pInputTextarea formControlName="description"/>
+    </div>
+    <div class="field">
+      <label class="block" for="image">Image</label>
+      <input pInputText id="image" formControlName="image"/>
+      <small class="p-error block" *ngIf="productForm.controls['image'].invalid && productForm.controls['image'].dirty">Field is required</small>
+
+    </div>
+    <div class="field">
+      <label class="block" for="category">Category</label>
+      <input pInputText id="category" formControlName="category"/>
+      <small class="p-error block" *ngIf="productForm.controls['category'].invalid && productForm.controls['category'].dirty">Field is required</small>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check"
+              (click)="closeModal()"
+              label="Cancel"
+              styleClass="p-button-text">
+    </p-button>
+    <p-button (click)="addProduct()" [disabled]="productForm.invalid" label="Add"></p-button>
+  </ng-template>
+</p-dialog>

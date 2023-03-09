@@ -28,11 +28,15 @@ const routes: Routes = [
     // canActivate: [LoginGuard]
   },
   { path: 'comments', loadChildren: () => import('./comment/comment.module').then(m => m.CommentModule) },
+  {
+    path: 'product', loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+  },
   { path: 'register', component: RegisterComponent},
   { path: 'form', component: FormComponent},
   {
     path: '**', component: NotfoundComponent
-  }
+  },
+
 ];
 
 @NgModule({

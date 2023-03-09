@@ -44,6 +44,7 @@ import {ToastModule} from "primeng/toast";
 import { FormComponent } from './form/form.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {InputNumberModule} from "primeng/inputnumber";
+import {ProductModule} from "./product/product.module";
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -77,7 +78,6 @@ function initFactory(initService: InitService) {
     HeaderModule,
     MatSnackBarModule,
     TableModule,
-    BrowserAnimationsModule,
     DropdownModule,
     MultiSelectModule,
     CheckboxModule,
