@@ -53,3 +53,11 @@
   </form>
 </p-card>
 
+<p-messages [(value)]="messages1"></p-messages>
+<p-toast position="top-right">
+
+</p-toast>
+
+<button pButton (click)="addSingle()" label="Show Toast"></button>
+<button pButton (click)="clear()" label="Clear"></button>
+<button pButton (click)="addMultiple()" label="Multiple"></button>

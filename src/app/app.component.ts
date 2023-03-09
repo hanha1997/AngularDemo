@@ -6,6 +6,7 @@ import {InitService} from "./init.service";
 import {ConfigService} from "./services/config.service";
 import {NavigationStart, Router} from "@angular/router";
 import {filter} from "rxjs";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
     @Inject(localStorageToken) private localStorage: any,
     private initService: InitService,
     private configService: ConfigService,
-    private router: Router
+    private router: Router,
 
     ) {
     console.log(initService)

@@ -37,6 +37,10 @@ import {EditorModule} from "primeng/editor";
 import { RegisterComponent } from './register/register.component';
 import {ButtonModule} from "primeng/button";
 import {CardModule} from "primeng/card";
+import {MessageModule} from "primeng/message";
+import {MessagesModule} from "primeng/messages";
+import {MessageService} from "primeng/api";
+import {ToastModule} from "primeng/toast";
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -51,7 +55,7 @@ function initFactory(initService: InitService) {
     LoginComponent,
     HoverDirective,
     EmailvalidatorDirective,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,10 @@ function initFactory(initService: InitService) {
     EditorModule,
     ReactiveFormsModule,
     ButtonModule,
-    CardModule
+    CardModule,
+    MessageModule,
+    MessagesModule,
+    ToastModule,
   ],
   providers: [
     {
