@@ -8,7 +8,8 @@ import {ButtonModule} from "primeng/button";
 import {DialogModule} from "primeng/dialog";
 import {AddEditProductModule} from "./add-edit-product/add-edit-product.module";
 import {ToastModule} from "primeng/toast";
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 
 
@@ -24,11 +25,12 @@ import {MessageService} from 'primeng/api';
     ButtonModule,
     DialogModule,
     AddEditProductModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule,
   ],
   exports: [
     ProductComponent
   ],
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 })
 export class ProductModule { }

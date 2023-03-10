@@ -22,4 +22,8 @@ export class ProductService {
 
     }
   }
+
+  deleteProducts(id: number){
+    return this.http.delete(`https://fakestoreapi.com/products/${id}`);
+  }
 }
