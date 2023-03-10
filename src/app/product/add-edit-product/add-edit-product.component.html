@@ -1,5 +1,5 @@
 <p-dialog
-  header="Header" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '50vw'}"
+  header="{{modalType}}" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '50vw'}"
           [draggable]="false" [resizable]="false" (onHide)="closeModal()"
 >
   <form [formGroup]="productForm" class="product-form">
@@ -36,6 +36,6 @@
               label="Cancel"
               styleClass="p-button-text">
     </p-button>
-    <p-button (click)="addProduct()" [disabled]="productForm.invalid" label="Add"></p-button>
+    <p-button (click)="addEditProduct()" [disabled]="productForm.invalid" label="{{modalType}}"></p-button>
   </ng-template>
 </p-dialog>

@@ -13,7 +13,8 @@ export class ProductComponent implements OnInit {
 
   }
   displayAddModal = false;
-  products: Product[] = []
+  products: Product[] = [];
+  selectedProduct: any  = null;
   ngOnInit() {
     this.getProductList();
   }
@@ -31,8 +32,18 @@ export class ProductComponent implements OnInit {
 
   showAddModal() {
     this.displayAddModal = true;
+    this.selectedProduct = null;
   }
   addProduct(event: any) {
-    this.products.unshift(event);
+    if (event.id === this.selectedProduct.id) {
+      const productIndex = this.products.findIndex(data => data.id === event.id);
+      this.products[productIndex] = event;
+    } else {
+      this.products.unshift(event);
+    }
+  }
+  showEditModal(product: Product) {
+    this.displayAddModal = true;
+    this.selectedProduct = product;
   }
 }
